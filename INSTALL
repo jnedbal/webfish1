@@ -1,0 +1,48 @@
+Expand the webfish.1.0.tar.gz file into a preferred directory:
+       tar xzf webfish.1.0.tar.gz
+A directory webfish.1.0 is created. It contains all the necessary code and an example code.
+
+To run the program successfully, number of dependencies must be met:
+
+Operating system:
+       MAC OS X 10.5 or Ubuntu 10.10 were tested, but other versions of MAC OS X or Linux
+       should be supported as long as shell commands awk, grep, sed and wc are available.
+MATLAB interpreter:
+       The code was tested with Mathworks Matlab R2011a with Bioinformatics Toolbox.
+       Other Matlab versions should be supported but without any guarantee.
+
+NCBI BLAST:
+       NCBI BLAST 2.2.21 needs to be installed and functional. Other versions were not
+       tested but may be supported without any guarantee. The path to the 'megablast'
+       executable must be provided in the webfish.m file.
+
+Primer3:
+       Primer3 1.1.4 needs to be installed and functional. Other versions were not
+       tested but may be supported without any guarantee. The path to the 'primer3_core'
+       executable must be provided in the <primer3_dir> tag of the configuration file.
+
+Formatted genome database:
+       Formatted genome database. A raw genome database can be obtained from
+       ftp://ftp.ensembl.org/. The database required to run the attached example is
+       available at ftp://ftp.ensembl.org/pub/release-64/fasta/homo_sapiens/dna/. Download
+       it and format it using 'formatdb' included with NCBI BLAST:
+             formatdb -i input_fasta_file -p F -o T
+       Save the files in a directory and include this directory in the configuration file
+       "tasks/ABCDEFGHxy.conf" <organism> tag replacing spaces with underscores. For 
+       instance, if the tag is <organism>homo sapiens</organism>, the directory containing
+       the formated chromosomal sequences must be called "homo_sapiens".
+
+Example run:
+       * Install all the necessary software.
+       * In the ./tasks/ACBDEFGHxy.conf file change the <primer3_dir> tag content on line
+         143 to the path leading to the primer3_core executable on your computer.
+       * In the ./webfish.m file on line 51 change the blast_dir to the path of the NCBI
+         megablast excecutable
+       * In the ./webfish.m file on line 57 change the genomes_dir to the path containing
+       	 the directories with the formated genome databases. For instance if the formatted
+	 databases are in the directory "./genomes/homo_sapiens/" it should say:
+	 genomes_dir = '/genomes/';.
+       * Run MATLAB.
+       * Change to the directory containing webfish.m and execute it.
+       * Results will appear in the folder ./tasks/ACBDEFGHxy/
+
